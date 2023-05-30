@@ -1,0 +1,41 @@
+Contar número de registos:
+db.plantas.countDocuments()
+Quantos registos de plantação se encontram na freguesia "São Domingos de Rana"?
+db.plantas.count({ Freguesia: "São Domingos de Rana", Espécie: { $ne: null } })
+
+Qual a lista de freguesias (ordenada alfabeticamente e sem repetições)?
+Usei o mongo, troquei o id por _id e tirei os espaços nas keys  
+
+
+db.plantas.distinct("Freguesia").sort()
+
+Número de registos por freguesia.
+db.plantas.aggregate([
+  {
+    $group: {
+      _id: "$Freguesia",
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: {
+      count: -1
+    }
+  }
+])
+
+
+Qual a distribuição dos registos por espécie?
+db.plantas.aggregate([
+  {
+    $group: {
+      _id: "$Espécie",
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: {
+      count: -1
+    }
+  }
+])
