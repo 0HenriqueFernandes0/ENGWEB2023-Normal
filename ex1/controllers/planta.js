@@ -35,9 +35,11 @@ module.exports.list = (especieParam,implantParam) => {
 module.exports.getLista = id => {
     return Lista.findOne({_id:id})
             .then(resposta => {
+                console.log('ola')
                 return resposta
             })
             .catch(erro => {
+                console.log(erro)
                 return erro
             })
 }
