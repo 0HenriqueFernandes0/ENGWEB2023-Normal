@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 
 router.get('/:id', function(req, res) {
   var data = new Date().toISOString().substring(0,19)
-  axios.get(env.apiAccessPoint+ req.params.id)
+  axios.get(env.apiAccessPoint+'/'+ req.params.id)
     .then(response => {
       res.render('listaCompras', { list: response.data, d: data });
     })
