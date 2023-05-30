@@ -13,7 +13,8 @@ block content
         
         each l in lists
           tr
-            td(href="/"+l._id)= l._id
+            td
+              a(href="/"+l._id)= l._id
             td= l.Freguesia
             td= l.Espécie
             td= l.Númerodeintervenções
