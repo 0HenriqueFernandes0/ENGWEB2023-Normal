@@ -82,12 +82,13 @@ module.exports.deleteLista = id => {
 
 module.exports.freguesia = () => {
     return Lista.find({})
+        .sort({Freguesia:1})
         .then(resposta => {
             arr = []
             resposta.forEach(element => {
                 arr.push(element['Freguesia'])
             });
-            return arr
+            return  Array.from(new Set(arr))
         })
         .catch(erro => {
             return erro
@@ -96,12 +97,13 @@ module.exports.freguesia = () => {
 
 module.exports.especies = () => {
     return Lista.find({},'Espécie -_id')
+        .sort({Espécie:1})
         .then(resposta => {
             arr = []
             resposta.forEach(element => {
                 arr.push(element['Espécie'])
             });
-            return arr
+            return  Array.from(new Set(arr))
         })
         .catch(erro => {
             return erro
